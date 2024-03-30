@@ -17,7 +17,7 @@ public class SearchEngine {
                 .map(MatchResult::group)
                 .collect(Collectors.joining());
 
-        Pattern pattern = Pattern.compile(term + "(|[!?.,])");
+        Pattern pattern = Pattern.compile(term + "(?=[!?.,\\s]|$)");
 
         for (var doc : docs) {
             var text = doc.get("text");
