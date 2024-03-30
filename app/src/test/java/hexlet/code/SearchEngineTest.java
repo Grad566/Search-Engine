@@ -10,16 +10,13 @@ import java.util.Map;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
 class SearchEngineTest {
-    private static String doc1;
-    private static String doc2;
-    private static String doc3;
     private static List<Map<String, String>> docs;
 
     @BeforeAll
     public static void setInput() {
-        doc1 = "I can't shoot straight unless I've had a pint!";
-        doc2 = "Don't shoot shoot shoot that thing at me.";
-        doc3 = "I'm your shooter.";
+        String doc1 = "I can't shoot straight unless I've had a pint!";
+        String doc2 = "Don't shoot shoot shoot that thing at me.";
+        String doc3 = "I'm your shooter.";
         docs = List.of(
                 Map.of("id", "doc1", "text", doc1),
                 Map.of("id", "doc2", "text", doc2),
@@ -31,6 +28,14 @@ class SearchEngineTest {
     public void testSearchCorrectWork() {
         var actual = SearchEngine.search(docs, "shoot");
         var expected = new ArrayList<String>(List.of("doc1", "doc2"));
+
+        assertEquals(expected, actual);
+    }
+
+    @Test
+    public void testSearchCorrectWorkPunctuation() {
+        var actual = SearchEngine.search(docs, "pint!");
+        var expected = new ArrayList<String>(List.of("doc1"));
 
         assertEquals(expected, actual);
     }
