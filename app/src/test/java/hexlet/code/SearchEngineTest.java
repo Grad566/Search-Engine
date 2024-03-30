@@ -7,6 +7,7 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
 
+import static hexlet.code.SearchEngine.search;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
 class SearchEngineTest {
@@ -26,7 +27,7 @@ class SearchEngineTest {
 
     @Test
     public void testSearchCorrectWork() {
-        var actual = SearchEngine.search(docs, "shoot");
+        var actual = search(docs, "shoot");
         var expected = new ArrayList<String>(List.of("doc1", "doc2"));
 
         assertEquals(expected, actual);
@@ -34,7 +35,7 @@ class SearchEngineTest {
 
     @Test
     public void testSearchCorrectWorkPunctuation() {
-        var actual = SearchEngine.search(docs, "pint!");
+        var actual = search(docs, "pint!");
         var expected = new ArrayList<String>(List.of("doc1"));
 
         assertEquals(expected, actual);
