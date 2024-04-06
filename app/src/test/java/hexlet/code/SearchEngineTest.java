@@ -41,4 +41,12 @@ class SearchEngineTest {
         assertEquals(expected, actual);
     }
 
+    @Test
+    public void testSearchOddSearch() {
+        var actual = search(docs, "shoot at me");
+        var expected = new ArrayList<String>(List.of("doc2", "doc1"));
+
+        assertEquals(expected, actual);
+    }
+
 }
