@@ -34,9 +34,11 @@ public class SearchEngine {
         }
 
         return map.entrySet().stream()
-                .sorted(Map.Entry.comparingByValue(Comparator.reverseOrder()))
+                .sorted(Map.Entry.<String, Double>comparingByValue(Comparator.reverseOrder())
+                        .thenComparing(Map.Entry::getKey))
                 .map(Map.Entry::getKey)
                 .collect(Collectors.toList());
+
     }
 
     private static void buildInvertedIndex(List<Map<String, String>> docs) {
